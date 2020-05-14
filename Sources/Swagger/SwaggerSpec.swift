@@ -122,6 +122,9 @@ extension SwaggerSpec: JSONObjectConvertible {
         }
 
         paths = try decodeNamed(jsonDictionary: jsonDictionary, key: "paths")
+            .sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.path < rhs.path
+        })
         securityDefinitions = try decodeNamed(jsonDictionary: jsonDictionary, key: "securityDefinitions")
         definitions = try decodeObject(jsonDictionary: jsonDictionary, key: "definitions")
         parameters = try decodeObject(jsonDictionary: jsonDictionary, key: "parameters")

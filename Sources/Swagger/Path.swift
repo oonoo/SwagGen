@@ -22,6 +22,8 @@ extension Path: NamedMappable {
                 }
             }
         }
-        operations = mappedOperations
+        operations = mappedOperations.sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.method.rawValue < rhs.method.rawValue
+        })
     }
 }
